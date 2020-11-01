@@ -9,5 +9,6 @@ namespace WebApp_Individuell.DAL
     public interface IFAQRepository
     {
         Task<List<FAQ>> HentAlle();
+        Task<bool> AskQuestion(FAQ innQuestion);
     }
 }

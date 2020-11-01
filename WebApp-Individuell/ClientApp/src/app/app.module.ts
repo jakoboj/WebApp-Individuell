@@ -1,23 +1,23 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
-import { AppComponent } from './app.component';
 import { Meny } from './nav-meny/nav-meny';
-import { FAQ } from './faq/faq';
+import { SPA } from './spa';
 
 
 @NgModule({
   declarations: [
-    AppComponent,
     Meny,
-    FAQ
+    SPA
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+    ReactiveFormsModule,
     HttpClientModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [Meny, SPA]
 })
 export class AppModule { }

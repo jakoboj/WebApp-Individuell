@@ -20,7 +20,7 @@ namespace WebApp_Individuell.DAL
         {
             try
             {
-                List<FAQ> alleFAQ = await _db.FAQs.Select(f => new FAQ
+                List<FAQ> alleFAQs = await _db.FAQs.Select(f => new FAQ
                 {
                     Id = f.Id,
                     Question = f.Question,
@@ -28,11 +28,29 @@ namespace WebApp_Individuell.DAL
                     Category = f.Category,
                     Thumbs = f.Thumbs
                 }).ToListAsync();
-                return alleFAQ;
+                return alleFAQs;
             }
             catch
             {
                 return null;
+            }
+        }
+
+        public async Task<bool> AskQuestion(FAQ innQuestion)
+        {
+            try
+            {
+                var nyFAQRad = new FAQ();
+                nyFAQRad.Question = innQuestion.Question;
+                nyFAQRad.Category = innQuestion.Category;
+
+                _db.FAQs.Add(nyFAQRad);
+                await _db.SaveChangesAsync();
+                return true;
+            }
+            catch
+            {
+                return false;
             }
         }
     }

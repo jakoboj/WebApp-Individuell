@@ -19,11 +19,22 @@ namespace WebApp_Individuell.Controllers
             _db = db;
         }
 
-        [HttpPost]
+        [HttpGet]
         public async Task<ActionResult> HentAlle()
         {
-            List<FAQ> alleFAQ = await _db.HentAlle();
-            return Ok(alleFAQ);
+            List<FAQ> alleFAQs = await _db.HentAlle();
+            return Ok(alleFAQs);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> AskQuestion(FAQ innQuestion)
+        {
+            if(ModelState.IsValid)
+            {
+                bool returOK = await _db.AskQuestion(innQuestion);
+                return Ok();
+            }
+            return BadRequest();
         }
     }
 }
