@@ -1,12 +1,31 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApp_Individuell.Models;
 
 namespace WebApp_Individuell.DAL
 {
+    public class Questions
+    {
+        public int Id { get; set; }
+        public string Question { get; set; }
+        public string Answer { get; set; }
+        public string Category { get; set; }
+        public int Thumbs { get; set; }
+    }
+
+    public class Categories
+    {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int Id { get; set; }
+        public string Category { get; set; }
+    }
+
     public class FAQContext : DbContext
     {
         public FAQContext (DbContextOptions<FAQContext> options) : base(options)
@@ -14,6 +33,12 @@ namespace WebApp_Individuell.DAL
             Database.EnsureCreated();
         }
 
-        public DbSet<FAQ> FAQs { get; set; }
+        public DbSet<Questions> Questions { get; set; }
+        public DbSet<Categories> Categories { get; set; } 
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseLazyLoadingProxies();
+        }
     }
 }

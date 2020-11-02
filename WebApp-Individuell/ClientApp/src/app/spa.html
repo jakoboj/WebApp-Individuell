@@ -1,3 +1,22 @@
+
+<div class="container">
+  <div *ngFor="let faq of alleFAQs">
+    <div *ngIf="faq.category=='Generell'">
+      <h1>Generelt</h1>
+      {{faq.question}}
+      <hr />
+      <label>Svar: </label>
+      {{faq.answer}}
+      <br />
+      <label>Tomler: </label>
+      {{faq.thumbs}}
+      <br />
+      <button class="btn btn-success" (click)="tommelOpp(faq.id, faq.question, faq.answer, faq.category, faq.thumbs)">Tommel opp</button>
+      <button class="btn btn-danger" (click)="tommelNed(faq.id)">Tommel ned</button>
+    </div>
+  </div>
+</div>
+
 <div class="container">
   <h2>FAQ</h2>
   <div>
@@ -18,8 +37,8 @@
             <td>{{faq.answer}}</td>
             <td>{{faq.category}}</td>
             <td>{{faq.thumbs}}</td>
-            <td><button class="btn btn-success" (click)="giTommelOpp(faq.id)">Tommel opp</button></td>
-            <td><button class="btn btn-danger" (click)="giTommelNed()">Tommel ned</button></td>
+            <td><button class="btn btn-success" (click)="giRating(faq.thumbs)" id="tommelOpp">Tommel opp</button></td>
+            <td><button class="btn btn-danger" (click)="giRating()" id="tommelNed">Tommel ned</button></td>
           </tr>
         </tbody>
       </table>
@@ -29,19 +48,23 @@
 
 <div class="container">
   <div class="col-md-4">
-    <form [formGroup]="skjema" (ngSubmit)="vedSubmit()">
+    <form [formGroup]="skjema" (ngSubmit)="leggTilSpm()">
       <input class="form-control" formControlName="id" type="hidden" />
       <div class="form-group">
         <label>Still spm</label>
-        <input class="form-control" formControlName="spm" />
+        <textarea class="form-control" formControlName="spm"></textarea>
       </div>
+      <input class="form-control" formControlName="svar" type="hidden" />
       <div class="form-group">
         <label>Kategori</label>
         <input class="form-control" formControlName="kategori" />
       </div>
+      
       <div class="form-group">
-        <button type="submit" class="btn btn-primary" (click)="leggTilSpm()">Still spm</button>
+        <button type="submit" class="btn btn-primary">Still spm</button>
       </div>
     </form>
   </div>
 </div>
+
+

@@ -20,7 +20,7 @@ namespace WebApp_Individuell.DAL
         {
             try
             {
-                List<FAQ> alleFAQs = await _db.FAQs.Select(f => new FAQ
+                List<FAQ> alleFAQs = await _db.Questions.Select(f => new FAQ
                 {
                     Id = f.Id,
                     Question = f.Question,
@@ -40,11 +40,11 @@ namespace WebApp_Individuell.DAL
         {
             try
             {
-                var nyFAQRad = new FAQ();
-                nyFAQRad.Question = innQuestion.Question;
-                nyFAQRad.Category = innQuestion.Category;
+                var nyttSpmRad = new Questions();
+                nyttSpmRad.Question = innQuestion.Question;
+                nyttSpmRad.Category = innQuestion.Category;
 
-                _db.FAQs.Add(nyFAQRad);
+                _db.Questions.Add(nyttSpmRad);
                 await _db.SaveChangesAsync();
                 return true;
             }

@@ -2,24 +2,26 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { FAQ } from './faq/faq';
+import { CAT } from './faq/cat';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'spa.html'
 })
 export class SPA {
-
-  stillSpm: boolean;
   visListe: boolean;
   alleFAQs: Array<FAQ>;
+  alleCATs: Array<CAT>;
   laster: boolean;
   skjema: FormGroup;
+  teller: number;
 
   validering = {
     id: [""],
     spm: [
       null, Validators.compose([Validators.required, Validators.pattern("[a-zA-ZæøåÆØÅ\\-. ]{2,100}")])    
     ],
+    svar: [""],
     kategori: [
       null, Validators.compose([Validators.required, Validators.pattern("[a-zA-ZæøåÆØÅ\\-. ]{2,100}")])
     ]
@@ -47,24 +49,42 @@ export class SPA {
     );
   };
 
-  vedSubmit() {
-    if (this.stillSpm) {
-      this.leggTilSpm();
-    }
-  }
+  /*hentCats() {
+    console.log("Hei cats")
+    this._http.get<CAT[]>("api/faq/").subscribe(CATs => {
+      this.alleCATs = CATs;
+      console.log(this.alleCATs);
+    })
+  }*/
 
   leggTilSpm() {
     const nyttSpm = new FAQ();
 
     nyttSpm.question = this.skjema.value.spm;
+    nyttSpm.answer = this.skjema.value.svar;
     nyttSpm.category = this.skjema.value.kategori;
+
+    console.log(this.skjema.value.kategori);
+    console.log(nyttSpm.category);
 
     this._http.post("api/faq/", nyttSpm).subscribe(retur => {
       this.hentAlleFAQs();
-      this.stillSpm = false;
       this.visListe = true;
     },
       error => console.log(error)
-    )
+    );
+
   }
+
+  giRating(thumbs) {
+    if (document.getElementById("tommelOpp").click) {
+      thumbs = thumbs + 1;
+      console.log(thumbs);
+    } else if (document.getElementById("tommelNed").click) {
+      thumbs= thumbs - 1;
+      console.log(thumbs);
+    }
+    return thumbs;
+  }
+
 }

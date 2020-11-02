@@ -19,7 +19,7 @@ namespace WebApp_Individuell.DAL
             db.Database.EnsureDeleted();
             db.Database.EnsureCreated();
 
-            var faq1 = new FAQ
+            /*var faq1 = new FAQ
             {
                 Id = 1,
                 Question = "Kan jeg det?",
@@ -39,7 +39,77 @@ namespace WebApp_Individuell.DAL
             };
 
             db.FAQs.Add(faq1);
-            db.FAQs.Add(faq2);
+            db.FAQs.Add(faq2);*/
+
+            var cat1 = new Categories
+            {
+                Id = 1,
+                Category = "Generell"
+            };
+
+            var cat2 = new Categories
+            {
+                Id = 2,
+                Category = "Bestilling"
+            };
+
+            var cat3 = new Categories
+            {
+                Id = 3,
+                Category = "Avgang"
+            };
+
+            var cat4 = new Categories
+            {
+                Id = 4,
+                Category = "Stasjon"
+            };
+
+            db.Categories.Add(cat1);
+            db.Categories.Add(cat2);
+            db.Categories.Add(cat3);
+            db.Categories.Add(cat4);
+
+            var qst1 = new Questions
+            {
+                Id = 1,
+                Question = "Kan man bestille billett samme dag som billetten brukes?",
+                Answer = "Ja, men billetten kan ikke refunderes senere enn 24 timer før bruk",
+                Category = "Generell",
+                Thumbs = 0
+            };
+
+            var qst2 = new Questions
+            {
+                Id = 2,
+                Question = "Kan man endre avgang?",
+                Answer = "Ja",
+                Category = "Avgang",
+                Thumbs = 0
+            };
+
+            var qst3 = new Questions
+            {
+                Id = 3,
+                Question = "Er avgangen den beste avgangen?",
+                Answer = "Det kommer an på den enkelte",
+                Category = "Avgang",
+                Thumbs = 0
+            };
+
+            var qst4 = new Questions
+            {
+                Id = 4,
+                Question = "Kan man bestille billett samme dag som billetten brukes?",
+                Answer = "Ja, men billetten kan ikke refunderes senere enn 24 timer før bruk",
+                Category = "Bestilling",
+                Thumbs = 0
+            };
+
+            db.Questions.Add(qst1);
+            db.Questions.Add(qst2);
+            db.Questions.Add(qst3);
+            db.Questions.Add(qst4);
 
             db.SaveChanges();
         }
