@@ -28,6 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\accordion\accordion.ts" />
     <None Remove="ClientApp\src\app\faq\cat.ts" />
     <None Remove="ClientApp\src\app\faq\faq.ts" />
     <None Remove="ClientApp\src\app\nav-meny\nav-meny.ts" />
@@ -35,6 +36,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\accordion\accordion.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\faq\cat.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\faq\faq.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\nav-meny\nav-meny.ts" />

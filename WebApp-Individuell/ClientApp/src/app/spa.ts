@@ -76,15 +76,36 @@ export class SPA {
 
   }
 
-  giRating(thumbs) {
-    if (document.getElementById("tommelOpp").click) {
-      thumbs = thumbs + 1;
-      console.log(thumbs);
-    } else if (document.getElementById("tommelNed").click) {
-      thumbs= thumbs - 1;
-      console.log(thumbs);
-    }
-    return thumbs;
+  endreTommelOpp(id, question, answer, category, thumbsUp, thumbsDown) {
+    const endreRating = new FAQ();
+    endreRating.id = id;
+    endreRating.question = question;
+    endreRating.answer = answer;
+    endreRating.category = category;
+    endreRating.thumbsUp = thumbsUp + 1;
+    endreRating.thumbsDown = thumbsDown;
+
+    this._http.put("api/faq", endreRating).subscribe(retur => {
+      this.hentAlleFAQs();
+    },
+      error => console.log(error)
+    );
+  }
+
+  endreTommelNed(id, question, answer, category, thumbsUp, thumbsDown) {
+    const endreRating = new FAQ();
+    endreRating.id = id;
+    endreRating.question = question;
+    endreRating.answer = answer;
+    endreRating.category = category;
+    endreRating.thumbsUp = thumbsUp;
+    endreRating.thumbsDown = thumbsDown - 1;
+
+    this._http.put("api/faq", endreRating).subscribe(retur => {
+      this.hentAlleFAQs();
+    },
+      error => console.log(error)
+    );
   }
 
 }

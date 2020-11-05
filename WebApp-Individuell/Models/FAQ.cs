@@ -11,6 +11,7 @@ namespace WebApp_Individuell.Models
         public string Question { get; set; }
         public string Answer { get; set; }
         public string Category { get; set; }
-        public int Thumbs { get; set; }
+        public int ThumbsUp { get; set; }
+        public int ThumbsDown { get; set; }
     }
 }

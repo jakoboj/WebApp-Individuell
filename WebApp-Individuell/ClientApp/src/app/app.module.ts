@@ -15,7 +15,7 @@ import { SPA } from './spa';
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [Meny, SPA]

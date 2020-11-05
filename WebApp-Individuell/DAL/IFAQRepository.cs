@@ -10,5 +10,6 @@ namespace WebApp_Individuell.DAL
     {
         Task<List<FAQ>> HentAlle();
         Task<bool> AskQuestion(FAQ innQuestion);
+        Task<bool> EndreRating(FAQ endretRating);
     }
 }

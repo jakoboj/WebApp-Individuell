@@ -26,7 +26,8 @@ namespace WebApp_Individuell.DAL
                     Question = f.Question,
                     Answer = f.Answer,
                     Category = f.Category,
-                    Thumbs = f.Thumbs
+                    ThumbsUp = f.ThumbsUp,
+                    ThumbsDown = f.ThumbsDown
                 }).ToListAsync();
                 return alleFAQs;
             }
@@ -52,6 +53,25 @@ namespace WebApp_Individuell.DAL
             {
                 return false;
             }
+        }
+
+        public async Task<bool> EndreRating(FAQ endretRating)
+        {
+            try
+            {
+                var endreObjekt = await _db.Questions.FindAsync(endretRating.Id);
+                endreObjekt.Question = endretRating.Question;
+                endreObjekt.Answer = endretRating.Answer;
+                endreObjekt.Category = endretRating.Category;
+                endreObjekt.ThumbsUp = endretRating.ThumbsUp;
+                endreObjekt.ThumbsDown = endretRating.ThumbsDown;
+                await _db.SaveChangesAsync();
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

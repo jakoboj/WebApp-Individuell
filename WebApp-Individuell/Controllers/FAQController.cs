@@ -36,5 +36,16 @@ namespace WebApp_Individuell.Controllers
             }
             return BadRequest();
         }
+
+        [HttpPut]
+        public async Task<ActionResult> EndreRating(FAQ endretRating)
+        {
+            if(ModelState.IsValid)
+            {
+                bool returOK = await _db.EndreRating(endretRating);
+                return Ok();
+            }
+            return BadRequest();
+        }
     }
 }

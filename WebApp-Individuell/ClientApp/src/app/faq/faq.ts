@@ -3,5 +3,6 @@ export class FAQ {
   question: string;
   answer: string;
   category: string;
-  thumbs: number;
+  thumbsUp: number;
+  thumbsDown: number;
 }

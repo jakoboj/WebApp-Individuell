@@ -76,7 +76,8 @@ namespace WebApp_Individuell.DAL
                 Question = "Kan man bestille billett samme dag som billetten brukes?",
                 Answer = "Ja, men billetten kan ikke refunderes senere enn 24 timer før bruk",
                 Category = "Generell",
-                Thumbs = 0
+                ThumbsUp = 0,
+                ThumbsDown = 0
             };
 
             var qst2 = new Questions
@@ -85,7 +86,8 @@ namespace WebApp_Individuell.DAL
                 Question = "Kan man endre avgang?",
                 Answer = "Ja",
                 Category = "Avgang",
-                Thumbs = 0
+                ThumbsUp = 0,
+                ThumbsDown = 0
             };
 
             var qst3 = new Questions
@@ -94,7 +96,8 @@ namespace WebApp_Individuell.DAL
                 Question = "Er avgangen den beste avgangen?",
                 Answer = "Det kommer an på den enkelte",
                 Category = "Avgang",
-                Thumbs = 0
+                ThumbsUp = 0,
+                ThumbsDown = 0
             };
 
             var qst4 = new Questions
@@ -103,7 +106,8 @@ namespace WebApp_Individuell.DAL
                 Question = "Kan man bestille billett samme dag som billetten brukes?",
                 Answer = "Ja, men billetten kan ikke refunderes senere enn 24 timer før bruk",
                 Category = "Bestilling",
-                Thumbs = 0
+                ThumbsUp = 0,
+                ThumbsDown = 0
             };
 
             db.Questions.Add(qst1);

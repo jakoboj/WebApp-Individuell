@@ -8,11 +8,14 @@
       <label>Svar: </label>
       {{faq.answer}}
       <br />
-      <label>Tomler: </label>
-      {{faq.thumbs}}
+      <label>Tommel opp: </label>
+      {{faq.thumbsUp}}
       <br />
-      <button class="btn btn-success" (click)="tommelOpp(faq.id, faq.question, faq.answer, faq.category, faq.thumbs)">Tommel opp</button>
-      <button class="btn btn-danger" (click)="tommelNed(faq.id)">Tommel ned</button>
+      <label>Tommel ned: </label>
+      {{faq.thumbsDown}}
+      <br />
+      <button class="btn btn-success" (click)="endreTommelOpp(faq.id, faq.question, faq.answer, faq.category, faq.thumbsUp, faq.thumbsDown); disabled=true" [disabled]="disabled" id="tommelOpp">Tommel opp</button>
+      <button class="btn btn-danger" (click)="endreTommelNed(faq.id, faq.question, faq.answer, faq.category, faq.thumbsUp, faq.thumbsDown); disabled=true" [disabled]="disabled" id="tommelNed">Tommel ned</button>
     </div>
   </div>
 </div>
@@ -28,7 +31,8 @@
             <th>Spørsmål</th>
             <th>Svar</th>
             <th>Kategori</th>
-            <th>Antall tomler</th>
+            <th>Tomler opp</th>
+            <th>Tomler ned</th>
           </tr>
         </thead>
         <tbody *ngFor="let faq of alleFAQs">
@@ -36,9 +40,10 @@
             <td>{{faq.question}}</td>
             <td>{{faq.answer}}</td>
             <td>{{faq.category}}</td>
-            <td>{{faq.thumbs}}</td>
-            <td><button class="btn btn-success" (click)="giRating(faq.thumbs)" id="tommelOpp">Tommel opp</button></td>
-            <td><button class="btn btn-danger" (click)="giRating()" id="tommelNed">Tommel ned</button></td>
+            <td>{{faq.thumbsUp}}</td>
+            <td>{{faq.thumbsDown}}</td>
+            <td><button class="btn btn-success" (click)="endreTommelOpp(faq.id, faq.question, faq.answer, faq.category, faq.thumbsUp, faq.thumbsDown)" id="tommelOpp">Tommel opp</button></td>
+            <td><button class="btn btn-danger" (click)="endreTommelNed(faq.id, faq.question, faq.answer, faq.category, faq.thumbsUp, faq.thumbsDown)" id="tommelNed">Tommel ned</button></td>
           </tr>
         </tbody>
       </table>
@@ -67,4 +72,23 @@
   </div>
 </div>
 
-
+<div class="container">
+  <div *ngFor="let faq of alleFAQs">
+    <div *ngIf="faq.category=='Generell'">
+      <h1>Generelt</h1>
+      {{faq.question}}
+      <hr />
+      <label>Svar: </label>
+      {{faq.answer}}
+      <br />
+      <label>Tommel opp: </label>
+      {{faq.thumbsUp}}
+      <br />
+      <label>Tommel ned: </label>
+      {{faq.thumbsDown}}
+      <br />
+      <button class="btn btn-success" (click)="endreTommelOpp(faq.id, faq.question, faq.answer, faq.category, faq.thumbsUp, faq.thumbsDown); disabled=true" [disabled]="disabled" id="tommelOpp">Tommel opp</button>
+      <button class="btn btn-danger" (click)="endreTommelNed(faq.id, faq.question, faq.answer, faq.category, faq.thumbsUp, faq.thumbsDown); disabled=true" [disabled]="disabled" id="tommelNed">Tommel ned</button>
+    </div>
+  </div>
+</div>
