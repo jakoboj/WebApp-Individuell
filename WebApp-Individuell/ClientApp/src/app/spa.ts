@@ -15,15 +15,21 @@ export class SPA {
   laster: boolean;
   skjema: FormGroup;
   teller: number;
+  generellSpm: boolean;
+  avgangSpm: boolean;
+  stasjonSpm: boolean;
+  bestillingSpm: boolean;
+  ubesvartSpm: boolean;
+  clicked: boolean;
 
   validering = {
     id: [""],
     spm: [
-      null, Validators.compose([Validators.required, Validators.pattern("[a-zA-ZæøåÆØÅ\\-. ]{2,100}")])    
+      null, Validators.compose([Validators.required, Validators.pattern("[a-zA-ZæøåÆØÅ\\-.?@ ]{10,100}")])    
     ],
     svar: [""],
     kategori: [
-      null, Validators.compose([Validators.required, Validators.pattern("[a-zA-ZæøåÆØÅ\\-. ]{2,100}")])
+      null, Validators.compose([Validators.required, Validators.pattern("[a-zA-ZæøåÆØÅ]{2,100}")])
     ]
   }
 
@@ -36,6 +42,12 @@ export class SPA {
     this.laster = true;
     this.hentAlleFAQs();
     this.visListe = true;
+    this.generellSpm = false;
+    this.avgangSpm = false;
+    this.stasjonSpm = false;
+    this.bestillingSpm = false;
+    this.ubesvartSpm = false;
+    this.clicked = false;
     console.log("Dette funker");
   }
 
@@ -53,16 +65,18 @@ export class SPA {
     console.log("Hei cats")
     this._http.get<CAT[]>("api/faq/").subscribe(CATs => {
       this.alleCATs = CATs;
+      this.laster = false;
       console.log(this.alleCATs);
     })
   }*/
 
   leggTilSpm() {
     const nyttSpm = new FAQ();
-
     nyttSpm.question = this.skjema.value.spm;
     nyttSpm.answer = this.skjema.value.svar;
     nyttSpm.category = this.skjema.value.kategori;
+    nyttSpm.thumbsUp = 0;
+    nyttSpm.thumbsDown = 0;
 
     console.log(this.skjema.value.kategori);
     console.log(nyttSpm.category);
@@ -73,7 +87,6 @@ export class SPA {
     },
       error => console.log(error)
     );
-
   }
 
   endreTommelOpp(id, question, answer, category, thumbsUp, thumbsDown) {
@@ -85,6 +98,9 @@ export class SPA {
     endreRating.thumbsUp = thumbsUp + 1;
     endreRating.thumbsDown = thumbsDown;
 
+    this.clicked = true;
+
+    console.log(endreRating.thumbsUp);
     this._http.put("api/faq", endreRating).subscribe(retur => {
       this.hentAlleFAQs();
     },
@@ -108,4 +124,48 @@ export class SPA {
     );
   }
 
+  reload() {
+    location.reload();
+    this.clicked = true;
+  }
+
+  visGenerellSpm() {
+    if (!this.generellSpm) {
+      this.generellSpm = true;
+    } else {
+      this.generellSpm = false;
+    }
+  }
+
+  visAvgangSpm() {
+    if (!this.avgangSpm) {
+      this.avgangSpm = true;
+    } else {
+      this.avgangSpm = false;
+    }
+  }
+
+  visStasjonSpm() {
+    if (!this.stasjonSpm) {
+      this.stasjonSpm = true;
+    } else {
+      this.stasjonSpm = false;
+    }
+  }
+
+  visBestillingSpm() {
+    if (!this.bestillingSpm) {
+      this.bestillingSpm = true;
+    } else {
+      this.bestillingSpm = false;
+    }
+  }
+
+  visUbesvartSpm() {
+    if (!this.ubesvartSpm) {
+      this.ubesvartSpm = true;
+    } else {
+      this.ubesvartSpm = false;
+    }
+  }
 }

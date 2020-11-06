@@ -7,6 +7,7 @@ import { Meny } from './nav-meny/nav-meny';
 import { SPA } from './spa';
 
 
+
 @NgModule({
   declarations: [
     Meny,

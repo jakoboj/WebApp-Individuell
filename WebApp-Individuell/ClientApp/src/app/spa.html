@@ -1,8 +1,135 @@
-
-<div class="container">
+<!--<div class="container">
+  <h1>Frequently Asked Questions</h1>
   <div *ngFor="let faq of alleFAQs">
     <div *ngIf="faq.category=='Generell'">
-      <h1>Generelt</h1>
+      <div *ngIf="faq.answer != NULL">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="mb-0">
+              <button class="btn btn-link" data-toggle="collapse" data-target="#genSpm" aria-expanded="true" id="btnGen">
+                {{faq.category}}
+              </button>
+            </h5>
+          </div>
+          <div id="genSpm" class="collapse">
+            <button class="btn btn-link" aria-expanded="true" aria-controls="svarBestilling" (click)="visSvar()">
+              {{faq.question}}
+            </button>
+            <hr />
+            <label>Svar: </label>
+            {{faq.answer}}
+            <br />
+            <label>Tommel opp: </label>
+            {{faq.thumbsUp}}
+            <br />
+            <label>Tommel ned: </label>
+            {{faq.thumbsDown}}
+            <br />
+            <button class="btn btn-success" (click)="endreTommelOpp(faq.id, faq.question, faq.answer, faq.category, faq.thumbsUp, faq.thumbsDown); disabled=true" [disabled]="disabled" id="tommelOpp">Tommel opp</button>
+            <button class="btn btn-danger" (click)="endreTommelNed(faq.id, faq.question, faq.answer, faq.category, faq.thumbsUp, faq.thumbsDown); disabled=true" [disabled]="disabled" id="tommelNed">Tommel ned</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="faq.category=='Avgang'">
+      <div *ngIf="faq.answer != NULL">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="mb-0">
+              <button class="btn btn-link" aria-expanded="true" id="btnGen" (click)="visSpm()">
+                {{faq.category}}
+              </button>
+            </h5>
+          </div>
+          <div *ngIf="visGenerellSpm" class="card-body">
+            <button class="btn btn-link" aria-expanded="true" aria-controls="svarBestilling" (click)="visSvar()">
+              {{faq.question}}
+            </button>
+            <hr />
+            <div *ngIf="visGenerellSvar" class="card-body">
+              <label>Svar: </label>
+              {{faq.answer}}
+              <br />
+              <label>Tommel opp: </label>
+              {{faq.thumbsUp}}
+              <br />
+              <label>Tommel ned: </label>
+              {{faq.thumbsDown}}
+              <br />
+              <button class="btn btn-success" (click)="endreTommelOpp(faq.id, faq.question, faq.answer, faq.category, faq.thumbsUp, faq.thumbsDown); disabled=true" [disabled]="disabled" id="tommelOpp">Tommel opp</button>
+              <button class="btn btn-danger" (click)="endreTommelNed(faq.id, faq.question, faq.answer, faq.category, faq.thumbsUp, faq.thumbsDown); disabled=true" [disabled]="disabled" id="tommelNed">Tommel ned</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="faq.category=='Stasjon'">
+      <div *ngIf="faq.answer != NULL">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="mb-0">
+              <button class="btn btn-link" aria-expanded="true" id="btnGen">
+                {{faq.category}}
+              </button>
+            </h5>
+          </div>
+          <div *ngIf="visGenerellSpm" class="card-body">
+            <button class="btn btn-link" aria-expanded="true" aria-controls="svarBestilling" (click)="visSvar()">
+              {{faq.question}}
+            </button>
+            <hr />
+            <div *ngIf="visGenerellSvar" class="card-body">
+              <label>Svar: </label>
+              {{faq.answer}}
+              <br />
+              <label>Tommel opp: </label>
+              {{faq.thumbsUp}}
+              <br />
+              <label>Tommel ned: </label>
+              {{faq.thumbsDown}}
+              <br />
+              <button class="btn btn-success" (click)="endreTommelOpp(faq.id, faq.question, faq.answer, faq.category, faq.thumbsUp, faq.thumbsDown); disabled=true" [disabled]="disabled" id="tommelOpp">Tommel opp</button>
+              <button class="btn btn-danger" (click)="endreTommelNed(faq.id, faq.question, faq.answer, faq.category, faq.thumbsUp, faq.thumbsDown); disabled=true" [disabled]="disabled" id="tommelNed">Tommel ned</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="faq.category=='Bestilling'">
+      <div *ngIf="faq.answer != NULL">
+         <div class="card">
+            <div class="card-header">
+              <h5 class="mb-0">
+                <button class="btn btn-link" aria-expanded="true" id="btnBest" (click)="visSpm()">
+                  {{faq.category}}
+                </button>
+              </h5>
+            </div>
+            <div *ngIf="visBestillingSpm" class="card-body">
+              <button class="btn btn-link" aria-expanded="true" aria-controls="svarBestilling" (click)="visSvar()">
+                {{faq.question}}
+              </button>
+              <hr />
+              <div *ngIf="visBestillingSvar" class="card-body">
+                <label>Svar: </label>
+                {{faq.answer}}
+                <br />
+                <label>Tommel opp: </label>
+                {{faq.thumbsUp}}
+                <br />
+                <label>Tommel ned: </label>
+                {{faq.thumbsDown}}
+                <br />
+                <button class="btn btn-success" (click)="endreTommelOpp(faq.id, faq.question, faq.answer, faq.category, faq.thumbsUp, faq.thumbsDown); disabled=true" [disabled]="disabled" id="tommelOpp">Tommel opp</button>
+                <button class="btn btn-danger" (click)="endreTommelNed(faq.id, faq.question, faq.answer, faq.category, faq.thumbsUp, faq.thumbsDown); disabled=true" [disabled]="disabled" id="tommelNed">Tommel ned</button>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div *ngIf="faq.answer == NULL">
+      <h1>Ubesvarte spørsmål</h1>
       {{faq.question}}
       <hr />
       <label>Svar: </label>
@@ -20,7 +147,7 @@
   </div>
 </div>
 
-<div class="container">
+<!--<div class="container">
   <h2>FAQ</h2>
   <div>
     <div class="col-md-12" *ngIf="visListe">
@@ -49,30 +176,163 @@
       </table>
     </div>
   </div>
+</div>-->
+
+<div class="container">
+  <h1>Frequently Asked Questions</h1>
+  <div class="card">
+
+    <!-- Generelle spørsmål -->
+    <div class="card-header">
+      <h5 class="mb-0">
+        <button class="btn btn-link" data-toggle="collapse" data-target="#genSpm" aria-expanded="true" id="btnGen" (click)="visGenerellSpm()">
+          Generelle spørsmål
+        </button>
+      </h5>
+    </div>
+    <div class="card-body" *ngIf="generellSpm"> 
+      <div *ngFor="let faq of alleFAQs">
+        <div *ngIf="faq.category == 'Generell'">
+          <div *ngIf="faq.answer != NULL">
+            <p>{{faq.question}}</p>
+            <p style="font-weight: bold;">{{faq.answer}}</p>
+            <p>+: {{faq.thumbsUp}}</p>
+            <p>-: {{faq.thumbsDown}}</p>
+            <button class="btn btn-success" (click)="endreTommelOpp(faq.id, faq.question, faq.answer, faq.category, faq.thumbsUp, faq.thumbsDown)">Tommel opp</button>
+            <button class="btn btn-danger" (click)="endreTommelNed(faq.id, faq.question, faq.answer, faq.category, faq.thumbsUp, faq.thumbsDown)">Tommel ned</button>
+            <hr />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Spørsmål om avgang -->
+    <div class="card-header">
+      <h5 class="mb-0">
+        <button class="btn btn-link" data-toggle="collapse" data-target="#genSpm" aria-expanded="true" id="btnGen" (click)="visAvgangSpm()">
+          Avgang spørsmål
+        </button>
+      </h5>
+    </div>
+    <div class="card-body" *ngIf="avgangSpm">
+      <div *ngFor="let faq of alleFAQs">
+        <div *ngIf="faq.category == 'Avgang'">
+          <div *ngIf="faq.answer != NULL">
+            <p>{{faq.question}}</p>
+            <p style="font-weight: bold;">{{faq.answer}}</p>
+            <p>+: {{faq.thumbsUp}}</p>
+            <p>-: {{faq.thumbsDown}}</p>
+            <button class="btn btn-success" (click)="endreTommelOpp(faq.id, faq.question, faq.answer, faq.category, faq.thumbsUp, faq.thumbsDown)">Tommel opp</button>
+            <button class="btn btn-danger" (click)="endreTommelNed(faq.id, faq.question, faq.answer, faq.category, faq.thumbsUp, faq.thumbsDown)">Tommel ned</button>
+            <hr />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Spørsmål om stasjoner -->
+    <div class="card-header">
+      <h5 class="mb-0">
+        <button class="btn btn-link" data-toggle="collapse" data-target="#genSpm" aria-expanded="true" id="btnGen" (click)="visStasjonSpm()">
+          Stasjon spørsmål
+        </button>
+      </h5>
+    </div>
+    <div class="card-body" *ngIf="stasjonSpm">
+      <div *ngFor="let faq of alleFAQs">
+        <div *ngIf="faq.category == 'Stasjon'">
+          <div *ngIf="faq.answer != NULL">
+            <p>{{faq.question}}</p>
+            <p style="font-weight: bold;">{{faq.answer}}</p>
+            <p>+: {{faq.thumbsUp}}</p>
+            <p>-: {{faq.thumbsDown}}</p>
+            <button class="btn btn-success" (click)="endreTommelOpp(faq.id, faq.question, faq.answer, faq.category, faq.thumbsUp, faq.thumbsDown)">Tommel opp</button>
+            <button class="btn btn-danger" (click)="endreTommelNed(faq.id, faq.question, faq.answer, faq.category, faq.thumbsUp, faq.thumbsDown)">Tommel ned</button>
+            <hr />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Spørsmål om bestilling -->
+    <div class="card-header">
+      <h5 class="mb-0">
+        <button class="btn btn-link" data-toggle="collapse" data-target="#genSpm" aria-expanded="true" id="btnGen" (click)="visBestillingSpm()">
+          Bestilling spørsmål
+        </button>
+      </h5>
+    </div>
+    <div class="card-body" *ngIf="bestillingSpm">
+      <div *ngFor="let faq of alleFAQs">
+        <div *ngIf="faq.category == 'Bestilling'">
+          <div *ngIf="faq.answer != NULL">
+            <p>{{faq.question}}</p>
+            <p style="font-weight: bold;">{{faq.answer}}</p>
+            <p>+: {{faq.thumbsUp}}</p>
+            <p>-: {{faq.thumbsDown}}</p>
+            <button class="btn btn-success" (click)="endreTommelOpp(faq.id, faq.question, faq.answer, faq.category, faq.thumbsUp, faq.thumbsDown)">Tommel opp</button>
+            <button class="btn btn-danger" (click)="endreTommelNed(faq.id, faq.question, faq.answer, faq.category, faq.thumbsUp, faq.thumbsDown)">Tommel ned</button>
+            <hr />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ubesvarte spørsmål -->
+  <div class="card-header">
+    <h5 class="mb-0">
+      <button class="btn btn-link" data-toggle="collapse" data-target="#genSpm" aria-expanded="true" id="btnGen" (click)="visUbesvartSpm()">
+        Ubesvarte spørsmål
+      </button>
+    </h5>
+  </div>
+  <div class="card-body" *ngIf="ubesvartSpm">
+    <div *ngFor="let faq of alleFAQs">
+      <div *ngIf="faq.answer == NULL">
+        <p>{{faq.question}}</p>
+        <p style="font-weight: bold;">{{faq.answer}}</p>
+        <p>Kategori: <label style="font-weight: bold">{{faq.category}}</label></p>
+        <hr />
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="container">
+  <h1>Still nytt spørsmål</h1>
   <div class="col-md-4">
     <form [formGroup]="skjema" (ngSubmit)="leggTilSpm()">
       <input class="form-control" formControlName="id" type="hidden" />
       <div class="form-group">
         <label>Still spm</label>
         <textarea class="form-control" formControlName="spm"></textarea>
+        <p class="alert alert-warning" [hidden]="skjema.controls.spm.valid">
+          Spørsmål må være mellom 10 og 140 tegn
+        </p>
       </div>
       <input class="form-control" formControlName="svar" type="hidden" />
       <div class="form-group">
         <label>Kategori</label>
-        <input class="form-control" formControlName="kategori" />
+        <select class="form-control" formControlName="kategori">
+          <option value="Generell">Generell</option>
+          <option value="Avgang">Avgang</option>
+          <option value="Stasjon">Stasjon</option>
+          <option value="Bestilling">Bestilling</option>
+        </select>
+        <p class="alert alert-warning" [hidden]="skjema.controls.kategori.valid">
+          Du må velge en kategori
+        </p>
       </div>
-      
+
       <div class="form-group">
-        <button type="submit" class="btn btn-primary">Still spm</button>
+        <button type="submit" class="btn btn-primary" [disabled]="!skjema.valid">Still spm</button>
       </div>
     </form>
   </div>
 </div>
 
-<div class="container">
+<!--<div class="container">
   <div *ngFor="let faq of alleFAQs">
     <div *ngIf="faq.category=='Generell'">
       <h1>Generelt</h1>
@@ -91,4 +351,4 @@
       <button class="btn btn-danger" (click)="endreTommelNed(faq.id, faq.question, faq.answer, faq.category, faq.thumbsUp, faq.thumbsDown); disabled=true" [disabled]="disabled" id="tommelNed">Tommel ned</button>
     </div>
   </div>
-</div>
+</div>-->
