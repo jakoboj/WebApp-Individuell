@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApp_Individuell.DAL;
 
 namespace WebApp_Individuell.Models
 {
@@ -10,6 +11,7 @@ namespace WebApp_Individuell.Models
         public int Id { get; set; }
         public string Question { get; set; }
         public string Answer { get; set; }
+        public int CId { get; set; }
         public string Category { get; set; }
         public int ThumbsUp { get; set; }
         public int ThumbsDown { get; set; }

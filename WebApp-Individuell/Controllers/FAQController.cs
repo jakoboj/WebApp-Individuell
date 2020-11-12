@@ -31,10 +31,11 @@ namespace WebApp_Individuell.Controllers
         {
             if(ModelState.IsValid)
             {
-                bool returOK = await _db.AskQuestion(innQuestion);
+                await _db.AskQuestion(innQuestion);
                 return Ok();
             }
             return BadRequest();
+            
         }
 
         [HttpPut]
@@ -42,7 +43,7 @@ namespace WebApp_Individuell.Controllers
         {
             if(ModelState.IsValid)
             {
-                bool returOK = await _db.EndreRating(endretRating);
+                await _db.EndreRating(endretRating);
                 return Ok();
             }
             return BadRequest();

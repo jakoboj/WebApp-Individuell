@@ -22,22 +22,22 @@
 
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Compile Remove="ClientApp\src\app\NewFolder\**" />
     <Content Remove="$(SpaRoot)**" />
+    <Content Remove="ClientApp\src\app\NewFolder\**" />
+    <EmbeddedResource Remove="ClientApp\src\app\NewFolder\**" />
     <None Remove="$(SpaRoot)**" />
+    <None Remove="ClientApp\src\app\NewFolder\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="ClientApp\src\app\accordion\accordion.ts" />
-    <None Remove="ClientApp\src\app\faq\cat.ts" />
     <None Remove="ClientApp\src\app\faq\faq.ts" />
     <None Remove="ClientApp\src\app\nav-meny\nav-meny.ts" />
     <None Remove="ClientApp\src\app\spa.ts" />
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\src\app\accordion\accordion.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\faq\cat.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\faq\faq.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\nav-meny\nav-meny.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\spa.ts" />

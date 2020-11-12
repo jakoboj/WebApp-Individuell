@@ -25,7 +25,7 @@ namespace WebApp_Individuell.DAL
                     Id = f.Id,
                     Question = f.Question,
                     Answer = f.Answer,
-                    Category = f.Category,
+                    Category = f.Category.Category,
                     ThumbsUp = f.ThumbsUp,
                     ThumbsDown = f.ThumbsDown
                 }).ToListAsync();
@@ -43,12 +43,17 @@ namespace WebApp_Individuell.DAL
             {
                 var nyttSpmRad = new Questions();
                 nyttSpmRad.Question = innQuestion.Question;
-                nyttSpmRad.Category = innQuestion.Category;
+                nyttSpmRad.Answer = "";
+                var sjekkCat = await _db.Categories.FindAsync(innQuestion.CId);
+                nyttSpmRad.Category = sjekkCat;
+                nyttSpmRad.ThumbsUp = 0;
+                nyttSpmRad.ThumbsDown = 0;
+
 
                 _db.Questions.Add(nyttSpmRad);
                 await _db.SaveChangesAsync();
                 return true;
-            }
+            } 
             catch
             {
                 return false;
@@ -62,7 +67,7 @@ namespace WebApp_Individuell.DAL
                 var endreObjekt = await _db.Questions.FindAsync(endretRating.Id);
                 endreObjekt.Question = endretRating.Question;
                 endreObjekt.Answer = endretRating.Answer;
-                endreObjekt.Category = endretRating.Category;
+                endreObjekt.Category.Category = endretRating.Category;
                 endreObjekt.ThumbsUp = endretRating.ThumbsUp;
                 endreObjekt.ThumbsDown = endretRating.ThumbsDown;
                 await _db.SaveChangesAsync();

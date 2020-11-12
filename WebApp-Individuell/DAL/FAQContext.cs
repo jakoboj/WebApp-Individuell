@@ -11,10 +11,11 @@ namespace WebApp_Individuell.DAL
 {
     public class Questions
     {
+        [Key]
         public int Id { get; set; }
         public string Question { get; set; }
         public string Answer { get; set; }
-        public string Category { get; set; }
+        virtual public Categories Category { get; set; }
         public int ThumbsUp { get; set; }
         public int ThumbsDown { get; set; }
     }
@@ -22,9 +23,9 @@ namespace WebApp_Individuell.DAL
     public class Categories
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Id { get; set; }
+        public int CId { get; set; }
         public string Category { get; set; }
+        virtual public List<Questions> Questions { get; set; }
     }
 
     public class FAQContext : DbContext

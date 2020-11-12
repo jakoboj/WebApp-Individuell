@@ -19,63 +19,48 @@ namespace WebApp_Individuell.DAL
             db.Database.EnsureDeleted();
             db.Database.EnsureCreated();
 
-            /*var faq1 = new FAQ
-            {
-                Id = 1,
-                Question = "Kan jeg det?",
-                Answer = "Ja",
-                Category = "Avgang",
-                Thumbs = 0
-               
-            };
-
-            var faq2 = new FAQ
-            {
-                Id = 2,
-                Question = "Dersom jeg kjøper en billett nå, hvor lang tid kan jeg vente før jeg avbestiller?",
-                Answer = "Du kan avbestille helt frem til tidspunktet billetten skal brukes, men pengene returneres ikke dersom du avbestiller senere enn 24 timer før billettstart",
-                Category = "Bestilling",
-                Thumbs = 0
-            };
-
-            db.FAQs.Add(faq1);
-            db.FAQs.Add(faq2);*/
-
             var cat1 = new Categories
             {
-                Id = 1,
+                CId = 1,
                 Category = "Generell"
             };
 
             var cat2 = new Categories
             {
-                Id = 2,
+                CId = 2,
                 Category = "Bestilling"
             };
 
             var cat3 = new Categories
             {
-                Id = 3,
+                CId = 3,
                 Category = "Avgang"
             };
 
             var cat4 = new Categories
             {
-                Id = 4,
+                CId = 4,
                 Category = "Stasjon"
+            };
+
+            var cat5 = new Categories
+            {
+                CId = 5,
+                Category = "Nytt spørsmål"
             };
 
             db.Categories.Add(cat1);
             db.Categories.Add(cat2);
             db.Categories.Add(cat3);
             db.Categories.Add(cat4);
+            db.Categories.Add(cat5);
 
             var qst1 = new Questions
             {
                 Id = 1,
                 Question = "Kan man bestille billett samme dag som billetten brukes?",
                 Answer = "Ja, men billetten kan ikke refunderes senere enn 24 timer før bruk",
-                Category = "Generell",
+                Category = cat1,
                 ThumbsUp = 0,
                 ThumbsDown = 0
             };
@@ -85,7 +70,7 @@ namespace WebApp_Individuell.DAL
                 Id = 2,
                 Question = "Kan man endre avgang?",
                 Answer = "Ja",
-                Category = "Avgang",
+                Category = cat2,
                 ThumbsUp = 0,
                 ThumbsDown = 0
             };
@@ -95,7 +80,7 @@ namespace WebApp_Individuell.DAL
                 Id = 3,
                 Question = "Er avgangen den beste avgangen?",
                 Answer = "Det kommer an på den enkelte",
-                Category = "Avgang",
+                Category = cat3,
                 ThumbsUp = 0,
                 ThumbsDown = 0
             };
@@ -105,7 +90,7 @@ namespace WebApp_Individuell.DAL
                 Id = 4,
                 Question = "Kan man bestille billett samme dag som billetten brukes?",
                 Answer = "Ja, men billetten kan ikke refunderes senere enn 24 timer før bruk",
-                Category = "Bestilling",
+                Category = cat4,
                 ThumbsUp = 0,
                 ThumbsDown = 0
             };
